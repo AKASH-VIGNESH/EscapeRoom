@@ -1,0 +1,88 @@
+.profile-wrapper{
+    width: 80%;
+    margin: auto;
+}
+.profile-gate-outer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 20px;
+    width: fit-content;
+    padding-left: 20px;
+    column-gap: 20px;
+}
+.profilegate {
+    height: 200px;
+    width: 440px;
+    background-color: #4B3BCF;
+    border-radius: 29px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    border-radius: 60px;
+}
+
+
+.profilegate:hover {
+    /* background-color: red; */
+    background-color:#E37070 ;
+}
+.gate-name{
+    width: fit-content;
+    margin: auto;
+    color: white;
+}
+.profile-heading{
+    font-family: inter tight;
+    font-size: 80px;
+}
+
+@media screen and (max-width:1000px) {
+    .profilegate {
+        height: 200px;
+        width: 300px;
+        background-color: #4B3BCF;
+        border-radius: 29px;
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+    
+}
+@media screen and (max-width:773px) {
+    .profilegate {
+        height: 200px;
+        width: 250px;
+        background-color: #4B3BCF;
+        border-radius: 29px;
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+    
+}
+
+@media screen and (max-width:650px) {
+    .profilegate {
+        height: 200px;
+        width: 150px;
+        background-color: #4B3BCF;
+        border-radius: 29px;
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+    
+}
+
+@media screen and (max-width:410px) {
+    .profilegate {
+        height: 120px;
+        width: 100%;
+        background-color: #4B3BCF;
+        border-radius: 29px;
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+    
+}

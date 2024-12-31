@@ -1,0 +1,80 @@
+.aboutWrapper {
+    width: 80%;
+    margin: auto;
+}
+
+.about {
+    font-size: 70px;
+    font-family: inter tight;
+    text-transform: uppercase;
+}
+
+.photoContainer {
+    height: 200px;
+    width: fit-content;
+    background-color: #E37070;
+    border-radius: 30px;
+}
+
+.photo {
+    height: 100%;
+    border-radius: 30px;
+}
+
+.designerName {
+    font-weight: 500;
+    font-family: inter tight;
+}
+
+.aboutDesigner {
+    font-weight: 400;
+    font-family: inter tight;
+}
+
+.aboutDesigner::after {
+    content: '.';
+}
+
+.designerIdentity {
+    font-weight: 600;
+    font-style: italic;
+    font-family: inter tight;
+}
+.designerDept{
+    font-weight: 600;
+    font-size: 20px;
+    font-family: inter tight;
+}
+
+.aboutMainContaniner {
+    display: flex;
+    width: 80%;
+    margin-left: 60px;
+    margin-top: 20px;
+    gap: 40px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.aboutScroll {
+    height: 400px;
+    overflow: scroll;
+    scrollbar-width: none;
+    display: grid;
+    gap: 40px;
+    border-radius: 25px;
+    border: 1px solid black;
+}
+.AboutmainContainer{
+    margin-top: 8rem;
+}
+@media (max-width:590px) {
+    .aboutMainContaniner {
+        display: block;
+        width: 80%;
+        margin: auto;
+        margin-top: 20px;
+        cursor: pointer;
+    }
+    
+}

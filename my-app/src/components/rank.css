@@ -1,0 +1,37 @@
+.rank-wrapper{
+    width: 80%;
+    margin: auto;
+}
+.rank-outer{
+    width: 80%;
+    border-radius: 60px;
+    padding-left: 2%;
+    padding-right: 2%;
+    background-color: #4B3BCF;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    padding-top: 20px ;
+    padding-bottom: 20px;
+}
+.rank-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 98%;
+    background:white;
+    border-radius: 45px;
+    padding: 10px;
+}
+
+.deptTitle{
+    margin-left: 25px;
+    font-weight:600;
+    letter-spacing: -1px;
+}
+
+.deptmarks{
+    margin-right: 15px;
+    font-size:25px;
+    font-weight: 400;
+}

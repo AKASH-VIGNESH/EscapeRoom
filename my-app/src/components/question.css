@@ -1,0 +1,53 @@
+.questionWrapper{
+    width: 80%;
+    margin: auto;
+}
+
+.questionbox{
+    width: 100%;
+    margin: auto;
+}
+
+.paddingfield{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    border: 1px solid black;
+    margin: auto;
+    padding: 40px;
+    border-radius: 25px;
+}
+
+.option-input{
+    display: flex;
+    column-gap: 8px;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.question{
+    font-weight: 500;
+}
+
+.btn-end {
+    /* align-items: end; */
+    display: flex;
+    /* align-items: end; */
+    justify-content: end;
+    
+}
+
+button.next-btn {
+    height: 35px;
+    width: 70px;
+    background-color: #4B3BCF;
+    text-transform: capitalize;
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: 750;
+    color: white;
+    border-radius: 25px;
+}
+

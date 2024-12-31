@@ -1,0 +1,361 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 10px 10px 10px;
+}
+
+.little-nav {
+    display: flex;
+    justify-content: space-evenly;
+    padding-left: 0;
+    gap: 60px;
+}
+
+.nav-li {
+    list-style-type: none;
+    font-family: Inter TIGHT;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.nav-li:hover{
+    color: #4B3BCF;
+}
+
+.nav-btn {
+    height: 30px;
+    width: 100px;
+    border-radius: 50px;
+    background-color: white;
+    text-decoration: none;
+    font-family: inter tight;
+    font-weight: bold;
+    color: black;
+}
+
+.nav-btn:hover {
+    background-color: black;
+    color: white;
+}
+
+.home-wrapper {
+    width: 80%;
+    margin: auto;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.homeMainPage {
+    height: fit-content;
+}
+
+.home-main {
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+
+.home-main-content {
+    font-family: INTER TIGHT;
+    font-size: 80px;
+    letter-spacing: -1.5px;
+}
+
+.solve-btn {
+
+    height: 50px;
+    width: 170px;
+    border: 1px solid black;
+    border-radius: 50px;
+    position: relative;
+    top: -40px;
+    background-color: white;
+    font-family: inter tight;
+    color: black;
+    font-weight: bolder;
+    text-decoration: none;
+    font-size: 20px;
+    align-content: center;
+    border-radius: 50px;
+}
+
+.solve-btn:hover {
+    background-color: black;
+    color: white;
+}
+
+
+.nav-link {
+    text-decoration: none;
+    color: black;
+    font-family: inter tight;
+}
+
+p {
+    font-family: inter tight;
+    font-weight: bolder;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.home-rules-heading {
+    padding-top: 50px;
+    font-size: 20px;
+}
+
+.home-terms {
+    margin-top: 7rem;
+}
+
+.animation {
+    background-color: white;
+    display: flex;
+    gap: 15px;
+    
+}
+
+.step-1 {
+    height: 208px;
+    width: 200px;
+    background-color: #4B3BCF;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    position: relative;
+    top: 0;
+    animation-name: step-1;
+    animation-duration: 500ms;
+    animation-timing-function: ease-out;
+}
+
+@keyframes step-1 {
+    from {
+        top: 208px;
+    }
+
+    to {
+        top: 0;
+    }
+}
+
+.step-2 {
+    height: 258px;
+    width: 200px;
+    background-color: #4B3BCF;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    position: relative;
+    top: -50px;
+    animation-name: step-2;
+    animation-duration: 700ms;
+    animation-timing-function: ease-out;
+}
+
+@keyframes step-2 {
+    from {
+        top: 258px;
+    }
+
+    to {
+        top: -50px;
+    }
+}
+
+.step-3 {
+    height: 308px;
+    width: 200px;
+    background-color: #4B3BCF;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    position: relative;
+    top: -100px;
+    animation-name: step-3;
+    animation-duration: 900ms;
+    animation-timing-function: ease-out;
+}
+
+@keyframes step-3 {
+    from {
+        top: 278px;
+    }
+
+    to {
+        top: -100px;
+    }
+}
+
+.main-content-rigth {
+    margin-top: -20px;
+}
+
+.title {
+    letter-spacing: -2px;
+    font-family: inter tight !important;
+    font-weight: bolder;
+    word-spacing: 2px;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.title:hover{
+    color: #4B3BCF;
+}
+
+.mobilelogo{
+    display: none;
+}
+
+@media (max-width: 720px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        align-items: center;
+        margin: 10px 10px 10px 10px;
+    }
+    .home-main{
+        display: block;
+    }
+    
+    
+    .main-content-rigth{
+        margin-top: -120px;
+    }
+}
+
+@media (min-width: 721px) and (max-width:1000px) {
+    .step-1 {
+        height: 208px;
+        width: 150px;
+        background-color: #4B3BCF;
+        border-top-left-radius: 35px;
+        border-top-right-radius: 35px;
+        position: relative;
+        top: 0;
+        animation-name: step-1;
+        animation-duration: 500ms;
+        animation-timing-function: ease-out;
+    }
+    
+    @keyframes step-1 {
+        from {
+            top: 208px;
+        }
+    
+        to {
+            top: 0;
+        }
+    }
+    
+    .step-2 {
+        height: 258px;
+        width: 150px;
+        background-color: #4B3BCF;
+        border-top-left-radius: 35px;
+        border-top-right-radius: 35px;
+        position: relative;
+        top: -50px;
+        animation-name: step-2;
+        animation-duration: 700ms;
+        animation-timing-function: ease-out;
+    }
+    
+    @keyframes step-2 {
+        from {
+            top: 258px;
+        }
+    
+        to {
+            top: -50px;
+        }
+    }
+    
+    .step-3 {
+        height: 308px;
+        width: 150px;
+        background-color: #4B3BCF;
+        border-top-left-radius: 35px;
+        border-top-right-radius: 35px;
+        position: relative;
+        top: -100px;
+        animation-name: step-3;
+        animation-duration: 900ms;
+        animation-timing-function: ease-out;
+    }
+}
+
+@media (min-width:401px)and (max-width:860px) {
+    .step-1{
+        display: none;
+    }
+    .step-2{
+        display: none;
+    }
+    .step-3{
+        display: none;
+    }
+    
+}
+
+
+@media only screen and (max-width:495px) {
+    
+    .dropdown-content {
+        display: none; 
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        border-radius: 5px;
+        padding: 10px;
+        left: 44%;
+    }
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    .mobilelogo{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+    }
+    .nav{
+        display: none;
+    }
+    .logo{
+        height: 100px;
+        width: 100px;
+    }
+    .home-main-content {
+        font-family: INTER TIGHT;
+        font-size: 40px;
+        letter-spacing: -1.5px;
+    }
+    .solve-btn {
+        height: 40px;
+        width: 150px;
+        border: 1px solid black;
+        position: relative;
+        top: -20px;
+        background-color: white;
+        font-family: inter tight;
+        color: black;
+        font-weight: bolder;
+        text-decoration: none;
+        font-size: 20px;
+        align-content: center;
+        border-radius: 50px;
+    }
+    .step-1{
+        display: none;
+    }
+    .step-2{
+        display: none;
+    }
+    .step-3{
+        display: none;
+    }
+}
