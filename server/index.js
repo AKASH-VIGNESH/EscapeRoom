@@ -1,295 +1,142 @@
+require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql2');
 const app = express();
 const cors = require('cors');
-const bodyparser = require('body-parser');  
+const bodyparser = require('body-parser');
+
 app.use(cors());
 app.use(bodyparser.json());
 
+// Railway DB connection
 const db = mysql.createConnection({
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: 'Akash28@da',
-    database: 'escaperoom',
-})
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+});
+
 db.connect((err) => {
     if (err) {
-        console.error('connection failed');
+        console.error('Connection failed:', err.message);
+    } else {
+        console.log('Database connected to Railway');
     }
-    else {
-        console.log('db connected');
-    }
-})
+});
 
+// GET routes
 app.get('/data/:id', (req, res) => {
     const { id } = req.params;
-    const q = 'select * from question1 where id=?';
-    db.query(q, [id], (err, resu) => {
-        if (err) {
-            return res.status(500).json({ error: err.message })
-        }
-        res.status(200).json(resu);
-    })
-})
+    db.query('SELECT * FROM question1 WHERE id = ?', [id], (err, result) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.status(200).json(result);
+    });
+});
 
 app.get('/data2/:id', (req, res) => {
     const { id } = req.params;
-    const q = 'select * from question2 where id=?';
-    db.query(q, [id], (err, resu) => {
-        if (err) {
-            return res.status(500).json({ error: err.message })
-        }
-        res.status(200).json(resu);
-    })
-})
+    db.query('SELECT * FROM question2 WHERE id = ?', [id], (err, result) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.status(200).json(result);
+    });
+});
 
 app.get('/data3/:id', (req, res) => {
     const { id } = req.params;
-    const q = 'select * from question3 where id=?';
-    db.query(q, [id], (err, resu) => {
-        if (err) {
-            return res.status(500).json({ error: err.message })
-        }
-        res.status(200).json(resu);
-    })
-})
+    db.query('SELECT * FROM question3 WHERE id = ?', [id], (err, result) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.status(200).json(result);
+    });
+});
 
 app.get('/data4/:id', (req, res) => {
     const { id } = req.params;
-    const q = 'select * from question4 where id=?';
-    db.query(q, [id], (err, resu) => {
-        if (err) {
-            return res.status(500).json({ error: err.message })
-        }
-        res.status(200).json(resu);
-    })
-})
+    db.query('SELECT * FROM question4 WHERE id = ?', [id], (err, result) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.status(200).json(result);
+    });
+});
 
 app.get('/data5/:id', (req, res) => {
     const { id } = req.params;
-    const q = 'select * from question5 where id=?';
-    db.query(q, [id], (err, resu) => {
-        if (err) {
-            return res.status(500).json({ error: err.message })
-        }
-        res.status(200).json(resu);
-    })
-})
+    db.query('SELECT * FROM question5 WHERE id = ?', [id], (err, result) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.status(200).json(result);
+    });
+});
 
 app.get('/data6/:id', (req, res) => {
     const { id } = req.params;
-    const q = 'select * from question6 where id=?';
-    db.query(q, [id], (err, resu) => {
-        if (err) {
-            return res.status(500).json({ error: err.message })
-        }
-        res.status(200).json(resu);
-    })
-})
+    db.query('SELECT * FROM question6 WHERE id = ?', [id], (err, result) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.status(200).json(result);
+    });
+});
 
 app.get('/login/:id', (req, res) => {
     const { id } = req.params;
-    const q = 'select id from credentials where username=?';
-    db.query(q, [id], (err, resu) => {
-        if (err) {
-            return res.status(500).json({ error: err.message })
-        }
-        res.status(200).json(resu);
-    })
-})
-
-app.put('/edit1/:id',(req,res)=>{
-    const {id} = req.params;
-    const {gate1}= req.body;
-    const q = 'update score set gate1=? where id=?';
-    db.query(q,[gate1,id],(err,result)=>{
-        if(err)
-        {
-            return res.status(500).json({error:err.message})
-        }
+    db.query('SELECT id FROM credentials WHERE username = ?', [id], (err, result) => {
+        if (err) return res.status(500).json({ error: err.message });
         res.status(200).json(result);
-    })
-})
+    });
+});
 
-app.put('/edit2/:id',(req,res)=>{
-    const {id} = req.params;
-    const {gate2}= req.body;
-    const q = 'update score set gate2=? where id=?';
-    db.query(q,[gate2,id],(err,result)=>{
-        if(err)
-        {
-            return res.status(500).json({error:err.message})
-        }
-        res.status(200).json(result);
-    })
-})
+// PUT routes for gate updates
+for (let i = 1; i <= 6; i++) {
+    app.put(`/edit${i}/:id`, (req, res) => {
+        const { id } = req.params;
+        const gateValue = req.body[`gate${i}`];
+        const q = `UPDATE score SET gate${i} = ? WHERE id = ?`;
+        db.query(q, [gateValue, id], (err, result) => {
+            if (err) return res.status(500).json({ error: err.message });
+            res.status(200).json(result);
+        });
+    });
 
-app.put('/edit3/:id',(req,res)=>{
-    const {id} = req.params;
-    const {gate3}= req.body;
-    const q = 'update score set gate3=? where id=?';
-    db.query(q,[gate3,id],(err,result)=>{
-        if(err)
-        {
-            return res.status(500).json({error:err.message})
-        }
-        res.status(200).json(result);
-    })
-})
+    app.get(`/scoreget${i}/:id`, (req, res) => {
+        const { id } = req.params;
+        const q = `SELECT gate${i} FROM score WHERE id = ?`;
+        db.query(q, [id], (err, result) => {
+            if (err) return res.status(500).json({ error: err.message });
+            res.status(200).json(result);
+        });
+    });
+}
 
-app.put('/edit4/:id',(req,res)=>{
-    const {id} = req.params;
-    const {gate4}= req.body;
-    const q = 'update score set gate4=? where id=?';
-    db.query(q,[gate4,id],(err,result)=>{
-        if(err)
-        {
-            return res.status(500).json({error:err.message})
-        }
-        res.status(200).json(result);
-    })
-})
-
-app.put('/edit5/:id',(req,res)=>{
-    const {id} = req.params;
-    const {gate5}= req.body;
-    const q = 'update score set gate5=? where id=?';
-    db.query(q,[gate5,id],(err,result)=>{
-        if(err)
-        {
-            return res.status(500).json({error:err.message})
-        }
-        res.status(200).json(result);
-    })
-})
-
-app.put('/edit6/:id',(req,res)=>{
-    const {id} = req.params;
-    const {gate6}= req.body;
-    const q = 'update score set gate6=? where id=?';
-    db.query(q,[gate6,id],(err,result)=>{
-        if(err)
-        {
-            return res.status(500).json({error:err.message})
-        }
-        res.status(200).json(result);
-    })
-})
-
-
-
-app.get('/scoreget1/:id', (req, res) => {
-    const { id } = req.params;
-    const q = 'select gate1 from score where id=?';
-    db.query(q, [id], (err, resu) => {
-        if (err) {
-            return res.status(500).json({ error: err.message })
-        }
-        res.status(200).json(resu);
-    })
-})
-
-app.get('/scoreget2/:id', (req, res) => {
-    const { id } = req.params;
-    const q = 'select gate2 from score where id=?';
-    db.query(q, [id], (err, resu) => {
-        if (err) {
-            return res.status(500).json({ error: err.message })
-        }
-        res.status(200).json(resu);
-    })
-})
-
-app.get('/scoreget3/:id', (req, res) => {
-    const { id } = req.params;
-    const q = 'select gate3 from score where id=?';
-    db.query(q, [id], (err, resu) => {
-        if (err) {
-            return res.status(500).json({ error: err.message })
-        }
-        res.status(200).json(resu);
-    })
-})
-
-app.get('/scoreget4/:id', (req, res) => {
-    const { id } = req.params;
-    const q = 'select gate4 from score where id=?';
-    db.query(q, [id], (err, resu) => {
-        if (err) {
-            return res.status(500).json({ error: err.message })
-        }
-        res.status(200).json(resu);
-    })
-})
-
-app.get('/scoreget5/:id', (req, res) => {
-    const { id } = req.params;
-    const q = 'select gate5 from score where id=?';
-    db.query(q, [id], (err, resu) => {
-        if (err) {
-            return res.status(500).json({ error: err.message })
-        }
-        res.status(200).json(resu);
-    })
-})
-
-app.get('/scoreget6/:id', (req, res) => {
-    const { id } = req.params;
-    const q = 'select gate6 from score where id=?';
-    db.query(q, [id], (err, resu) => {
-        if (err) {
-            return res.status(500).json({ error: err.message })
-        }
-        res.status(200).json(resu);
-    })
-})
-
+// Stats and reset routes
 app.get('/stats/:id', (req, res) => {
     const { id } = req.params;
-    const q = 'select * from score where id=?';
-    db.query(q, [id], (err, resu) => {
-        if (err) {
-            return res.status(500).json({ error: err.message })
-        }
-        res.status(200).json(resu);
-    })
-})
-
-app.put('/reset/:id',(req,res)=>{
-    const {id} = req.params;
-    const q = 'update score set gate1=0,gate2=0,gate3=0,gate4=0,gate5=0,gate6=0 where id=?';
-    db.query(q,[id],(err,result)=>{
-        if(err)
-        {
-            return res.status(500).json({error:err.message})
-        }
+    db.query('SELECT * FROM score WHERE id = ?', [id], (err, result) => {
+        if (err) return res.status(500).json({ error: err.message });
         res.status(200).json(result);
-    })
-})
+    });
+});
+
+app.put('/reset/:id', (req, res) => {
+    const { id } = req.params;
+    const q = 'UPDATE score SET gate1=0, gate2=0, gate3=0, gate4=0, gate5=0, gate6=0 WHERE id = ?';
+    db.query(q, [id], (err, result) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.status(200).json(result);
+    });
+});
 
 app.get('/percent/:id', (req, res) => {
     const { id } = req.params;
-    const q = 'select average from score where id=?';
-    db.query(q, [id], (err, resu) => {
-        if (err) {
-            return res.status(500).json({ error: err.message })
-        }
-        res.status(200).json(resu);
-    })
-})
+    db.query('SELECT average FROM score WHERE id = ?', [id], (err, result) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.status(200).json(result);
+    });
+});
 
-app.get('/ranks',(req,res)=>{
-    const q = 'select user,sum from score order by sum DESC';
-    db.query(q, (err, resu) => {
-        if (err) {
-            return res.status(500).json({ error: err.message })
-        }
-        res.status(200).json(resu);
-    })
-
-})
+app.get('/ranks', (req, res) => {
+    db.query('SELECT user, sum FROM score ORDER BY sum DESC', (err, result) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.status(200).json(result);
+    });
+});
 
 app.listen(3001, () => {
-    console.log('sever running');
+    console.log('Server running on port 3001');
 });
